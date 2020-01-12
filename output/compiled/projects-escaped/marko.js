@@ -1,17 +1,19 @@
-// Compiled using marko@4.4.28 - DO NOT EDIT
+// Compiled using marko@4.18.31 - DO NOT EDIT
 "use strict";
 
 var marko_template = module.exports = require("marko/dist/html").t(__filename),
-    marko_helpers = require("marko/dist/runtime/html/helpers"),
-    marko_escapeXml = marko_helpers.x,
-    marko_loadTag = marko_helpers.t,
-    component_globals_tag = marko_loadTag(require("marko/dist/components/taglib/component-globals-tag")),
-    marko_forEach = marko_helpers.f,
-    marko_attr = marko_helpers.a,
-    init_components_tag = marko_loadTag(require("marko/dist/components/taglib/init-components-tag")),
-    await_reorderer_tag = marko_loadTag(require("marko/dist/taglibs/async/await-reorderer-tag"));
+    marko_componentType = "/templating-benchmarks$0.0.0/templates/projects-escaped/template.marko",
+    marko_renderer = require("marko/dist/runtime/components/renderer"),
+    helpers_escape_xml = require("marko/dist/runtime/html/helpers/escape-xml"),
+    marko_escapeXml = helpers_escape_xml.x,
+    marko_loadTag = require("marko/dist/runtime/helpers/load-tag"),
+    component_globals_tag = marko_loadTag(require("marko/dist/core-tags/components/component-globals-tag")),
+    marko_forOf = require("marko/dist/runtime/helpers/for-of"),
+    marko_attr = require("marko/dist/runtime/html/helpers/attr"),
+    init_components_tag = marko_loadTag(require("marko/dist/core-tags/components/init-components-tag")),
+    await_reorderer_tag = marko_loadTag(require("marko/dist/core-tags/core/await/reorderer-renderer"));
 
-function render(input, out) {
+function render(input, out, __component, component, state) {
   var data = input;
 
   out.w("<html><head><title>" +
@@ -24,7 +26,11 @@ function render(input, out) {
     marko_escapeXml(input.text) +
     "</p>");
 
-  marko_forEach(input.projects, function(project) {
+  var $for$0 = 0;
+
+  marko_forOf(input.projects, function(project) {
+    var $keyScope$0 = "[" + (($for$0++) + "]");
+
     out.w("<a" +
       marko_attr("href", project.url) +
       ">" +
@@ -40,17 +46,21 @@ function render(input, out) {
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out);
+  await_reorderer_tag({}, out, __component, "7");
 
   out.w("</body></html>");
 }
 
-marko_template._ = render;
+marko_template._ = marko_renderer(render, {
+    e_: true,
+    f_: marko_componentType
+  });
 
 marko_template.meta = {
+    id: "/templating-benchmarks$0.0.0/templates/projects-escaped/template.marko",
     tags: [
-      "marko/dist/components/taglib/component-globals-tag",
-      "marko/dist/components/taglib/init-components-tag",
-      "marko/dist/taglibs/async/await-reorderer-tag"
+      "marko/dist/core-tags/components/component-globals-tag",
+      "marko/dist/core-tags/components/init-components-tag",
+      "marko/dist/core-tags/core/await/reorderer-renderer"
     ]
   };

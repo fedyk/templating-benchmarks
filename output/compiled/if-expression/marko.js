@@ -1,16 +1,22 @@
-// Compiled using marko@4.4.28 - DO NOT EDIT
+// Compiled using marko@4.18.31 - DO NOT EDIT
 "use strict";
 
 var marko_template = module.exports = require("marko/dist/html").t(__filename),
-    marko_helpers = require("marko/dist/runtime/html/helpers"),
-    marko_forEach = marko_helpers.f,
-    marko_escapeXml = marko_helpers.x,
-    marko_classAttr = marko_helpers.ca;
+    marko_componentType = "/templating-benchmarks$0.0.0/templates/if-expression/template.marko",
+    marko_renderer = require("marko/dist/runtime/components/renderer"),
+    marko_forOf = require("marko/dist/runtime/helpers/for-of"),
+    helpers_escape_xml = require("marko/dist/runtime/html/helpers/escape-xml"),
+    marko_escapeXml = helpers_escape_xml.x,
+    marko_classAttr = require("marko/dist/runtime/html/helpers/class-attr");
 
-function render(input, out) {
+function render(input, out, __component, component, state) {
   var data = input;
 
-  marko_forEach(input.accounts, function(account) {
+  var $for$0 = 0;
+
+  marko_forOf(input.accounts, function(account) {
+    var $keyScope$0 = "[" + (($for$0++) + "]");
+
     out.w("<div>");
 
     if (account.accountStatus === "closed") {
@@ -29,6 +35,11 @@ function render(input, out) {
   });
 }
 
-marko_template._ = render;
+marko_template._ = marko_renderer(render, {
+    e_: true,
+    f_: marko_componentType
+  });
 
-marko_template.meta = {};
+marko_template.meta = {
+    id: "/templating-benchmarks$0.0.0/templates/if-expression/template.marko"
+  };
